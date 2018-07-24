@@ -42,7 +42,9 @@ export function repeatableOptionCallback(val, result) {
 export function parseVersion(version) {
     if (!version.includes("enterprise-edition")) {
         // remove any postfix, i.e., 0.11.0-rc1 should be 0.11.0
-        return version.split("-")[0];
+        version = version.split("-")[0]
+        // remove any other postfix of the form 0.13.0rc2  for example
+        return version.split('rc')[0]
     }
 
     // Kong EE versioning is X.Y(-Z)-enterprise-edition
